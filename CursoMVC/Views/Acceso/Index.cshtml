@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Acceso";
+}
+
+<h2>Acceso</h2>
+
+<div class="row">
+    <form id="frm">
+        <div class="col-lg-6">
+            <div class="form-group-lg">
+
+                <label>usuario</label>
+                <input class="form-control" type="type" name="user" value="" />
+                <br />
+                <label>password</label>
+                <input class="form-control" type="password" name="pass" value="" />
+                <br />
+                <input class="btn btn-primary mt-3" type="submit" value="entrar" />
+            </div>
+        </div>
+    </form>
+</div>
+
+@section scripts{
+<script>
+    $(document).ready(function () {
+        $("#frm").submit(function (e) {
+            e.preventDefault();
+            let url = "@Url.Content("~/Acceso/Enter")";
+            let parametros = $(this).serialize();
+            console.log(parametros);
+
+            $.post(url, parametros, function (data) {
+                if (data == "1") {
+                    alert(data);
+                    document.location.href = "@Url.Content("~/Home")";
+                } else {
+                    alert(data);
+                }
+            })
+        })
+    })
+</script>
+
+}
