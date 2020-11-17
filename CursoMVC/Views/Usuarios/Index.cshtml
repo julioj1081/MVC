@@ -1,0 +1,27 @@
+﻿@model List<CursoMVC.Models.TablasModelos.UsuariosCLS>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista de usuarios</h2>
+
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <td>#</td>
+                <td>Email</td>
+                <td>Edad</td>
+            </tr>
+            @foreach(var item in Model)
+            {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Email</td>
+            <td>@item.Edad</td>
+        </tr>
+            }
+        </table>
+    </div>
+</div>
+

@@ -15,6 +15,7 @@
     <Property Name="email" Type="varchar" MaxLength="50" />
     <Property Name="password" Type="varchar" MaxLength="50" />
     <Property Name="idEstado" Type="int" />
+    <Property Name="edad" Type="int" />
   </EntityType>
   <Association Name="FK_usuarios_estado">
     <End Role="estado" Type="Self.estado" Multiplicity="0..1" />

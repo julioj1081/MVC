@@ -25,6 +25,7 @@
     <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="idEstado" Type="Int32" />
     <NavigationProperty Name="estado" Relationship="CursoMVCModel.FK_usuarios_estado" FromRole="usuarios" ToRole="estado" />
+    <Property Name="edad" Type="Int32" />
   </EntityType>
   <Association Name="FK_usuarios_estado">
     <End Type="CursoMVCModel.estado" Role="estado" Multiplicity="0..1" />
