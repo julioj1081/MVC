@@ -51,6 +51,8 @@ C:\Users\julio\source\repos\CursoMVC\CursoMVC\bin\roslyn\vbc.rsp
 C:\Users\julio\source\repos\CursoMVC\CursoMVC\bin\roslyn\VBCSCompiler.exe
 C:\Users\julio\source\repos\CursoMVC\CursoMVC\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\julio\source\repos\CursoMVC\CursoMVC\bin\Antlr3.Runtime.dll
+C:\Users\julio\source\repos\CursoMVC\CursoMVC\bin\EntityFramework.dll
+C:\Users\julio\source\repos\CursoMVC\CursoMVC\bin\EntityFramework.SqlServer.dll
 C:\Users\julio\source\repos\CursoMVC\CursoMVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\julio\source\repos\CursoMVC\CursoMVC\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\julio\source\repos\CursoMVC\CursoMVC\bin\Newtonsoft.Json.dll
@@ -62,6 +64,8 @@ C:\Users\julio\source\repos\CursoMVC\CursoMVC\bin\System.Web.WebPages.Deployment
 C:\Users\julio\source\repos\CursoMVC\CursoMVC\bin\System.Web.WebPages.dll
 C:\Users\julio\source\repos\CursoMVC\CursoMVC\bin\System.Web.WebPages.Razor.dll
 C:\Users\julio\source\repos\CursoMVC\CursoMVC\bin\WebGrease.dll
+C:\Users\julio\source\repos\CursoMVC\CursoMVC\bin\EntityFramework.xml
+C:\Users\julio\source\repos\CursoMVC\CursoMVC\bin\EntityFramework.SqlServer.xml
 C:\Users\julio\source\repos\CursoMVC\CursoMVC\bin\System.Web.Helpers.xml
 C:\Users\julio\source\repos\CursoMVC\CursoMVC\bin\System.Web.Mvc.xml
 C:\Users\julio\source\repos\CursoMVC\CursoMVC\bin\System.Web.Optimization.xml
@@ -83,8 +87,4 @@ C:\Users\julio\source\repos\CursoMVC\CursoMVC\obj\Debug\CursoMVC.csproj.CoreComp
 C:\Users\julio\source\repos\CursoMVC\CursoMVC\obj\Debug\CursoMVC.csproj.CopyComplete
 C:\Users\julio\source\repos\CursoMVC\CursoMVC\obj\Debug\CursoMVC.dll
 C:\Users\julio\source\repos\CursoMVC\CursoMVC\obj\Debug\CursoMVC.pdb
-C:\Users\julio\source\repos\CursoMVC\CursoMVC\bin\EntityFramework.dll
-C:\Users\julio\source\repos\CursoMVC\CursoMVC\bin\EntityFramework.SqlServer.dll
-C:\Users\julio\source\repos\CursoMVC\CursoMVC\bin\EntityFramework.xml
-C:\Users\julio\source\repos\CursoMVC\CursoMVC\bin\EntityFramework.SqlServer.xml
 C:\Users\julio\source\repos\CursoMVC\CursoMVC\obj\Debug\CursoMVC.csprojAssemblyReference.cache
