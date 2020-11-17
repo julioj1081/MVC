@@ -83,3 +83,8 @@ C:\Users\julio\source\repos\CursoMVC\CursoMVC\obj\Debug\CursoMVC.csproj.CoreComp
 C:\Users\julio\source\repos\CursoMVC\CursoMVC\obj\Debug\CursoMVC.csproj.CopyComplete
 C:\Users\julio\source\repos\CursoMVC\CursoMVC\obj\Debug\CursoMVC.dll
 C:\Users\julio\source\repos\CursoMVC\CursoMVC\obj\Debug\CursoMVC.pdb
+C:\Users\julio\source\repos\CursoMVC\CursoMVC\bin\EntityFramework.dll
+C:\Users\julio\source\repos\CursoMVC\CursoMVC\bin\EntityFramework.SqlServer.dll
+C:\Users\julio\source\repos\CursoMVC\CursoMVC\bin\EntityFramework.xml
+C:\Users\julio\source\repos\CursoMVC\CursoMVC\bin\EntityFramework.SqlServer.xml
+C:\Users\julio\source\repos\CursoMVC\CursoMVC\obj\Debug\CursoMVC.csprojAssemblyReference.cache
