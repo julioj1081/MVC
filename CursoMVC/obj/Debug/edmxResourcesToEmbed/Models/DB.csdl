@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CursoMVCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="CursoMVCEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="estado" EntityType="CursoMVCModel.estado" />
+    <EntitySet Name="usuarios" EntityType="CursoMVCModel.usuarios" />
+    <AssociationSet Name="FK_usuarios_estado" Association="CursoMVCModel.FK_usuarios_estado">
+      <End Role="estado" EntitySet="estado" />
+      <End Role="usuarios" EntitySet="usuarios" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="estado">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="usuarios" Relationship="CursoMVCModel.FK_usuarios_estado" FromRole="estado" ToRole="usuarios" />
+  </EntityType>
+  <EntityType Name="usuarios">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="idEstado" Type="Int32" />
+    <NavigationProperty Name="estado" Relationship="CursoMVCModel.FK_usuarios_estado" FromRole="usuarios" ToRole="estado" />
+  </EntityType>
+  <Association Name="FK_usuarios_estado">
+    <End Type="CursoMVCModel.estado" Role="estado" Multiplicity="0..1" />
+    <End Type="CursoMVCModel.usuarios" Role="usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="estado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="usuarios">
+        <PropertyRef Name="idEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
