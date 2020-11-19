@@ -25,6 +25,8 @@ namespace CursoMVC.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Animal> Animal { get; set; }
+        public virtual DbSet<Animales_class> Animales_class { get; set; }
         public virtual DbSet<estado> estado { get; set; }
         public virtual DbSet<usuarios> usuarios { get; set; }
     }

@@ -1,5 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="CursoMVCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Animal">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" />
+    <Property Name="idAnimal_class" Type="int" />
+  </EntityType>
+  <EntityType Name="Animales_class">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Especie" Type="varchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="estado">
     <Key>
       <PropertyRef Name="id" />
@@ -17,6 +32,18 @@
     <Property Name="idEstado" Type="int" />
     <Property Name="edad" Type="int" />
   </EntityType>
+  <Association Name="FK_Animal_Animales_class">
+    <End Role="Animales_class" Type="Self.Animales_class" Multiplicity="0..1" />
+    <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Animales_class">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Animal">
+        <PropertyRef Name="idAnimal_class" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_usuarios_estado">
     <End Role="estado" Type="Self.estado" Multiplicity="0..1" />
     <End Role="usuarios" Type="Self.usuarios" Multiplicity="*" />
@@ -30,8 +57,14 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="CursoMVCModelStoreContainer">
+    <EntitySet Name="Animal" EntityType="Self.Animal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Animales_class" EntityType="Self.Animales_class" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="estado" EntityType="Self.estado" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Animal_Animales_class" Association="Self.FK_Animal_Animales_class">
+      <End Role="Animales_class" EntitySet="Animales_class" />
+      <End Role="Animal" EntitySet="Animal" />
+    </AssociationSet>
     <AssociationSet Name="FK_usuarios_estado" Association="Self.FK_usuarios_estado">
       <End Role="estado" EntitySet="estado" />
       <End Role="usuarios" EntitySet="usuarios" />

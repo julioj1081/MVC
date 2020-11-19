@@ -1,13 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="CursoMVCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="CursoMVCEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Animal" EntityType="CursoMVCModel.Animal" />
+    <EntitySet Name="Animales_class" EntityType="CursoMVCModel.Animales_class" />
     <EntitySet Name="estado" EntityType="CursoMVCModel.estado" />
     <EntitySet Name="usuarios" EntityType="CursoMVCModel.usuarios" />
+    <AssociationSet Name="FK_Animal_Animales_class" Association="CursoMVCModel.FK_Animal_Animales_class">
+      <End Role="Animales_class" EntitySet="Animales_class" />
+      <End Role="Animal" EntitySet="Animal" />
+    </AssociationSet>
     <AssociationSet Name="FK_usuarios_estado" Association="CursoMVCModel.FK_usuarios_estado">
       <End Role="estado" EntitySet="estado" />
       <End Role="usuarios" EntitySet="usuarios" />
     </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Animal">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="idAnimal_class" Type="Int32" />
+    <NavigationProperty Name="Animales_class" Relationship="CursoMVCModel.FK_Animal_Animales_class" FromRole="Animal" ToRole="Animales_class" />
+  </EntityType>
+  <EntityType Name="Animales_class">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Especie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Animal" Relationship="CursoMVCModel.FK_Animal_Animales_class" FromRole="Animales_class" ToRole="Animal" />
+  </EntityType>
   <EntityType Name="estado">
     <Key>
       <PropertyRef Name="id" />
@@ -24,9 +47,21 @@
     <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="idEstado" Type="Int32" />
-    <NavigationProperty Name="estado" Relationship="CursoMVCModel.FK_usuarios_estado" FromRole="usuarios" ToRole="estado" />
     <Property Name="edad" Type="Int32" />
+    <NavigationProperty Name="estado" Relationship="CursoMVCModel.FK_usuarios_estado" FromRole="usuarios" ToRole="estado" />
   </EntityType>
+  <Association Name="FK_Animal_Animales_class">
+    <End Type="CursoMVCModel.Animales_class" Role="Animales_class" Multiplicity="0..1" />
+    <End Type="CursoMVCModel.Animal" Role="Animal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Animales_class">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Animal">
+        <PropertyRef Name="idAnimal_class" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_usuarios_estado">
     <End Type="CursoMVCModel.estado" Role="estado" Multiplicity="0..1" />
     <End Type="CursoMVCModel.usuarios" Role="usuarios" Multiplicity="*" />
