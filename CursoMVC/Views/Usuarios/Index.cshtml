@@ -17,6 +17,7 @@
                 <td>#</td>
                 <td>Email</td>
                 <td>Edad</td>
+                <td></td>
             </tr>
             @foreach(var item in Model)
             {
@@ -24,9 +25,29 @@
             <td>@item.Id</td>
             <td>@item.Email</td>
             <td>@item.Edad</td>
+            <td>
+                <input onclick="document.location.href='@Url.Content("~/Usuarios/Modificar/"+item.Id)'" value="Modificar" type="button" class="btn btn-warning glyphicon glyphicon-edit" />
+                <input onclick="jsDelete(@item.Id);" value="Eliminar" type="button" class="btn btn-danger glyphicon glyphicon-trash" />
+            </td>
         </tr>
             }
         </table>
     </div>
 </div>
 
+<script>
+    function jsDelete(id) {
+        if (confirm("Estas seguro de eliminar")) {
+            //desabilitar 0
+            url = "@Url.Content("~/Usuarios/Delete")" + "/" + id;
+            $.post(url, function (data) {
+                if (data == "1") {
+                    alert("Delete");
+                    document.location.href = "@Url.Content("~/Usuarios/")"
+                } else {
+                    alert("Ocurrio un error");
+                }
+            })
+        }
+    }
+</script>
