@@ -42,7 +42,7 @@
             url = "@Url.Content("~/Usuarios/Delete")" + "/" + id;
             $.post(url, function (data) {
                 if (data == "1") {
-                    alert("Delete");
+                    alert("Eliminado con exito!");
                     document.location.href = "@Url.Content("~/Usuarios/")"
                 } else {
                     alert("Ocurrio un error");

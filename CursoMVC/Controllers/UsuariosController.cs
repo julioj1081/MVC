@@ -83,13 +83,15 @@ namespace CursoMVC.Controllers
             {
                 return View(model);
             }
-            
-                using(var bd = new CursoMVCEntities())
+            else
+            {
+
+                using (var bd = new CursoMVCEntities())
                 {
                     var ousu = bd.usuarios.Find(model.Id);
                     ousu.email = model.Email;
                     ousu.edad = model.Edad;
-                    if(model.Password!=null && model.Password.Trim() != "")
+                    if (model.Password != null && model.Password.Trim() != "")
                     {
                         ousu.password = model.Password;
                     }
@@ -98,18 +100,18 @@ namespace CursoMVC.Controllers
                     bd.SaveChanges();
                 }
                 return Redirect(Url.Content("~/Usuarios/"));
+            }
         }
    
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            int estado = 0;
-            using(var bd = new CursoMVCEntities())
+            using (var bd = new CursoMVCEntities())
             {
                 var ouser = bd.usuarios.Find(id);
-                ouser.idEstado = 0;
+                ouser.idEstado = 2;
                 bd.Entry(ouser).State = System.Data.Entity.EntityState.Modified;
-                estado = bd.SaveChanges();
+                bd.SaveChanges();
             }
             return Content("1");
         }

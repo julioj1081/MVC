@@ -87,3 +87,4 @@ C:\Users\julio\source\repos\CursoMVC\CursoMVC\obj\Debug\CursoMVC.csproj.CoreComp
 C:\Users\julio\source\repos\CursoMVC\CursoMVC\obj\Debug\CursoMVC.csproj.CopyComplete
 C:\Users\julio\source\repos\CursoMVC\CursoMVC\obj\Debug\CursoMVC.dll
 C:\Users\julio\source\repos\CursoMVC\CursoMVC\obj\Debug\CursoMVC.pdb
+C:\Users\julio\source\repos\CursoMVC\CursoMVC\obj\Debug\CursoMVC.csprojAssemblyReference.cache
