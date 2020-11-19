@@ -23,13 +23,13 @@ namespace CursoMVC.Filtros
                     filterContext.HttpContext.Response.Redirect("~/Acceso/Index");
                 }
             }
-            //else
-            //{
-            //    if(filterContext.Controller is AccesoController == true)
-            //    {
-            //        filterContext.HttpContext.Response.Redirect("~/Home/Index");
-            //    }
-            //}
+            else
+            {
+                if (filterContext.Controller is AccesoController == true)
+                {
+                    filterContext.HttpContext.Response.Redirect("~/Home/Index");
+                }
+            }
             base.OnActionExecuting(filterContext);
         }
     }

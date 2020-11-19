@@ -42,11 +42,6 @@ namespace CursoMVC.Controllers
             }catch(Exception e) { return Content("Ocurrio un error :(" + e.Message); }
            
         }
-        public ActionResult Cerrar()
-        {
-            ViewBag.Message = "Your contact page.";
-            Session["usuario"] = null;
-            return RedirectToAction("Index");
-        }
+        
     }
 }
