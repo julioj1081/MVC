@@ -1,20 +1,28 @@
-﻿@model List<SelectListItem>
+﻿@using CursoMVC.Models.TablasModelos;
+@model List<SelectListItem>
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Animales</h2>
 <div class="row">
-    <div class="col-md-6">
-        <div class="form-group">
-            Clases
-            @Html.DropDownList("Animales_class", Model, new { @class = "form-control", id="AnimalClass" })
+    <div class="container">
+        <div class="col-md-4">
+            <div class="form-group">
+                Clases
+                @Html.DropDownList("Animales_class", Model, new { @class = "form-control", id = "AnimalClass" })
+            </div>
+            <div class="form-group">
+                Animal
+                <select id="animal" name="animal" class="form-control" onchange="Tabla()">
+                    
+                </select>
+            </div>
         </div>
-        <div class="form-group">
-            Animal
-            <select id="animal" name="animal" class="form-control">
-
-            </select>
+        <div class="col-md-8">
+            <h3>Historial</h3>
+                <div class="tabla">
+                </div>
         </div>
     </div>
 </div>
@@ -34,12 +42,49 @@
                 //console.log(data);
                 cbo = document.getElementById("animal");
                 cbo.innerHTML = "";
+                console.log(data);
                 data.forEach(function (ele) {
                     let opt = document.createElement("option");
                     opt.appendChild(document.createTextNode(ele.Text));
-                    opt.value = ele.value;
+                    opt.value = ele.Value;
                     cbo.appendChild(opt);
                 })
             })
+
+
     }
+
+    function Tabla() {
+        let animal = document.getElementById("animal").value;
+        //alert(animal);
+
+        var url = "Animales/Tabla_Desc/?Id=" + animal;
+        var tabla = document.querySelector(".tabla");
+        $.post(url, function (data) {
+            if (data) {
+                //console.log(data);
+                tabla.innerHTML += `
+                    
+                    <table class="table table-bordered table-hover " id="item${data[0].Id}">
+                        <thead>
+                        <tr>
+                            <td># ${data[0].Id}</td>
+                            <td>Clase ${data[0].Nombre}</td>
+                            <td>Especie ${data[0].idAnimal_class}</td>
+                            <td style="text-align: center;"><button onclick="Eliminar(${data[0].Id});" class="btn btn-danger glyphicon glyphicon-trash"></button></td>
+                        </tr>
+                        </thead>
+                    </table>
+                `;
+            }
+        })
+    }
+
+    function Eliminar(id) {
+        if (confirm("Press a button!") == 1) {
+            document.getElementById("item" + id).style.display = "none";
+        }
+    }
+
+
 </script>

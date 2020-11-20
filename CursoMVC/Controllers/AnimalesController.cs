@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CursoMVC.Models;
+using CursoMVC.Models.TablasModelos;
 
 namespace CursoMVC.Controllers
 {
@@ -20,6 +22,8 @@ namespace CursoMVC.Controllers
                              Value = d.Id.ToString(),
                              Text = d.Especie
                          }).ToList();
+
+                list1.Insert(0, new SelectListItem { Text = "-- Seleccione --", Value = "" });
             }
             return View(list1);
         }
@@ -37,6 +41,8 @@ namespace CursoMVC.Controllers
                            Value = d.Id,
                            Text = d.Nombre
                        }).ToList();
+                lst.Insert(0, new ElementJsonIntKey { Value = int.Parse("0"), Text = "--Seleccione--" });
+
             }
             return Json(lst, JsonRequestBehavior.AllowGet);
         }
@@ -44,6 +50,30 @@ namespace CursoMVC.Controllers
             public int Value { get; set; }
             public string Text { get; set; }
         }
+
+      
+        public JsonResult Tabla_Desc(int Id)
+        {
+            List<AnimalesCLS> lista = new List<AnimalesCLS>();
+            using(var bd = new CursoMVCEntities())
+            {
+                lista = (from item in bd.Animal
+                         where item.Id == Id
+                         select new AnimalesCLS
+                         {
+                             Id = item.Id,
+                             Nombre = item.Nombre,
+                             idAnimal_class = item.idAnimal_class.ToString()
+                         }).ToList();
+
+            }
+            return Json(lista, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
+
 
     }
 }

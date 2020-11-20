@@ -162,6 +162,7 @@
     <Compile Include="Models\estado.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TablasModelos\AnimalesCLS.cs" />
     <Compile Include="Models\TablasModelos\UsuariosCLS.cs" />
     <Compile Include="Models\usuarios.cs">
       <DependentUpon>DB.tt</DependentUpon>
