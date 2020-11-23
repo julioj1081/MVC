@@ -1,0 +1,50 @@
+﻿@model CursoMVC.Models.ViewModels.CascadaCLS
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Cascada paises estados y ciudades</h2>
+@if (ViewBag.PaisesLista != null)
+{
+    @Html.DropDownListFor(d => d.Pais_id, ViewBag.PaisesLista as SelectList, "-- Seleccione un pais --", new { @class = "form-control" })
+}
+<!--Tenemos que crear una vista parcial antes-->
+@Html.DropDownListFor(d => d.Estado_id, new SelectList(""), "-- Seleccione un Estado --", new { @class = "form-control" })
+
+@Html.DropDownListFor(d => d.Ciudad_id, new SelectList(""), "-- Seleccione un Ciudad --", new { @class = "form-control" })
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#Pais_id").change(function () {
+            var paisid = $(this).val();
+            debugger
+            $.ajax({
+                type: "post",
+                url: "/Cascada/GetEstadosList?Pais_id=" + paisid,
+                contentType: "html",
+                success: function (res) {
+                    debugger
+                    $("#Estado_id").empty();
+                    $("#Estado_id").append(res);
+                }
+            })
+        })
+
+
+        $("#Estado_id").change(function () {
+            var Estado_id = $(this).val();
+            debugger
+            $.ajax({
+                type: "post",
+                url: "/Cascada/GetCiudadesList?Estado_id=" + Estado_id,
+                contentType: "html",
+                success: function (res) {
+                    debugger
+                    $("#Ciudad_id").empty();
+                    $("#Ciudad_id").append(res);
+                }
+            })
+        })
+    })
+</script>

@@ -13,6 +13,17 @@
       <End Role="estado" EntitySet="estado" />
       <End Role="usuarios" EntitySet="usuarios" />
     </AssociationSet>
+    <EntitySet Name="Ciudades" EntityType="CursoMVCModel.Ciudades" />
+    <EntitySet Name="Estados" EntityType="CursoMVCModel.Estados" />
+    <EntitySet Name="Paises" EntityType="CursoMVCModel.Paises" />
+    <AssociationSet Name="FK_Ciudades_Estados" Association="CursoMVCModel.FK_Ciudades_Estados">
+      <End Role="Estados" EntitySet="Estados" />
+      <End Role="Ciudades" EntitySet="Ciudades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Estados_Paises" Association="CursoMVCModel.FK_Estados_Paises">
+      <End Role="Paises" EntitySet="Paises" />
+      <End Role="Estados" EntitySet="Estados" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Animal">
     <Key>
@@ -71,6 +82,57 @@
       </Principal>
       <Dependent Role="usuarios">
         <PropertyRef Name="idEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Ciudades">
+    <Key>
+      <PropertyRef Name="Ciudad_id" />
+    </Key>
+    <Property Name="Ciudad_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ciudad_nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Estado_id" Type="Int32" />
+    <NavigationProperty Name="Estados" Relationship="CursoMVCModel.FK_Ciudades_Estados" FromRole="Ciudades" ToRole="Estados" />
+  </EntityType>
+  <EntityType Name="Estados">
+    <Key>
+      <PropertyRef Name="Estado_id" />
+    </Key>
+    <Property Name="Estado_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Estado_nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Pais_id" Type="Int32" />
+    <NavigationProperty Name="Ciudades" Relationship="CursoMVCModel.FK_Ciudades_Estados" FromRole="Estados" ToRole="Ciudades" />
+    <NavigationProperty Name="Paises" Relationship="CursoMVCModel.FK_Estados_Paises" FromRole="Estados" ToRole="Paises" />
+  </EntityType>
+  <EntityType Name="Paises">
+    <Key>
+      <PropertyRef Name="Pais_id" />
+    </Key>
+    <Property Name="Pais_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Pais_nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Estados" Relationship="CursoMVCModel.FK_Estados_Paises" FromRole="Paises" ToRole="Estados" />
+  </EntityType>
+  <Association Name="FK_Ciudades_Estados">
+    <End Type="CursoMVCModel.Estados" Role="Estados" Multiplicity="0..1" />
+    <End Type="CursoMVCModel.Ciudades" Role="Ciudades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estados">
+        <PropertyRef Name="Estado_id" />
+      </Principal>
+      <Dependent Role="Ciudades">
+        <PropertyRef Name="Estado_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Estados_Paises">
+    <End Type="CursoMVCModel.Paises" Role="Paises" Multiplicity="0..1" />
+    <End Type="CursoMVCModel.Estados" Role="Estados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paises">
+        <PropertyRef Name="Pais_id" />
+      </Principal>
+      <Dependent Role="Estados">
+        <PropertyRef Name="Pais_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

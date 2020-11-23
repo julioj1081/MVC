@@ -11,6 +11,11 @@
         <EntityTypeShape EntityType="CursoMVCModel.usuarios" Width="1.5" PointX="3" PointY="0.875" />
         <AssociationConnector Association="CursoMVCModel.FK_Animal_Animales_class" />
         <AssociationConnector Association="CursoMVCModel.FK_usuarios_estado" />
+        <EntityTypeShape EntityType="CursoMVCModel.Ciudades" Width="1.5" PointX="9.875" PointY="1" />
+        <EntityTypeShape EntityType="CursoMVCModel.Estados" Width="1.5" PointX="7.625" PointY="0.875" />
+        <EntityTypeShape EntityType="CursoMVCModel.Paises" Width="1.5" PointX="5.375" PointY="1.125" />
+        <AssociationConnector Association="CursoMVCModel.FK_Ciudades_Estados" />
+        <AssociationConnector Association="CursoMVCModel.FK_Estados_Paises" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

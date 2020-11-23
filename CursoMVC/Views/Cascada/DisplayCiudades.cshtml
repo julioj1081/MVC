@@ -1,0 +1,11 @@
+﻿@model CursoMVC.Models.Ciudades
+
+
+<option value="">-- Seleccione un Ciudad --</option>
+@if (ViewBag.CiudadLista != null)
+{
+    foreach (var item in ViewBag.CiudadLista)
+    {
+        <option value="@item.Value">@item.Text</option>
+    }
+}

@@ -131,6 +131,7 @@
     <Compile Include="Controllers\AccesoController.cs" />
     <Compile Include="Controllers\AnimalesController.cs" />
     <Compile Include="Controllers\ArchivoController.cs" />
+    <Compile Include="Controllers\CascadaController.cs" />
     <Compile Include="Controllers\Cerrar_SessionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
@@ -142,6 +143,9 @@
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Animales_class.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Ciudades.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB.Context.cs">
@@ -162,12 +166,19 @@
     <Compile Include="Models\estado.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Estados.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Paises.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TablasModelos\AnimalesCLS.cs" />
     <Compile Include="Models\TablasModelos\UsuariosCLS.cs" />
     <Compile Include="Models\usuarios.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModels\ArchivoViewModel.cs" />
+    <Compile Include="Models\ViewModels\CascadaCLS.cs" />
     <Compile Include="Models\ViewModels\UsuarioViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -231,6 +242,9 @@
     <Content Include="Views\Usuarios\Modificar.cshtml" />
     <Content Include="Views\Archivo\Index.cshtml" />
     <Content Include="Views\Animales\Index.cshtml" />
+    <Content Include="Views\Cascada\Index.cshtml" />
+    <Content Include="Views\Cascada\DisplayEstados.cshtml" />
+    <Content Include="Views\Cascada\DisplayCiudades.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

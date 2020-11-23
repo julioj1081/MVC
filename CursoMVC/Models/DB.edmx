@@ -20,12 +20,35 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Especie" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Ciudades">
+          <Key>
+            <PropertyRef Name="Ciudad_id" />
+          </Key>
+          <Property Name="Ciudad_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ciudad_nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Estado_id" Type="int" />
+        </EntityType>
         <EntityType Name="estado">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Estados">
+          <Key>
+            <PropertyRef Name="Estado_id" />
+          </Key>
+          <Property Name="Estado_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Estado_nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Pais_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Paises">
+          <Key>
+            <PropertyRef Name="Pais_id" />
+          </Key>
+          <Property Name="Pais_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pais_nombre" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="usuarios">
           <Key>
@@ -49,6 +72,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Ciudades_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="0..1" />
+          <End Role="Ciudades" Type="Self.Ciudades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="Estado_id" />
+            </Principal>
+            <Dependent Role="Ciudades">
+              <PropertyRef Name="Estado_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estados_Paises">
+          <End Role="Paises" Type="Self.Paises" Multiplicity="0..1" />
+          <End Role="Estados" Type="Self.Estados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paises">
+              <PropertyRef Name="Pais_id" />
+            </Principal>
+            <Dependent Role="Estados">
+              <PropertyRef Name="Pais_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_usuarios_estado">
           <End Role="estado" Type="Self.estado" Multiplicity="0..1" />
           <End Role="usuarios" Type="Self.usuarios" Multiplicity="*" />
@@ -64,11 +111,22 @@
         <EntityContainer Name="CursoMVCModelStoreContainer">
           <EntitySet Name="Animal" EntityType="Self.Animal" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Animales_class" EntityType="Self.Animales_class" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ciudades" EntityType="Self.Ciudades" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="estado" EntityType="Self.estado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paises" EntityType="Self.Paises" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Animal_Animales_class" Association="Self.FK_Animal_Animales_class">
             <End Role="Animales_class" EntitySet="Animales_class" />
             <End Role="Animal" EntitySet="Animal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ciudades_Estados" Association="Self.FK_Ciudades_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Ciudades" EntitySet="Ciudades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estados_Paises" Association="Self.FK_Estados_Paises">
+            <End Role="Paises" EntitySet="Paises" />
+            <End Role="Estados" EntitySet="Estados" />
           </AssociationSet>
           <AssociationSet Name="FK_usuarios_estado" Association="Self.FK_usuarios_estado">
             <End Role="estado" EntitySet="estado" />
@@ -91,6 +149,17 @@
           <AssociationSet Name="FK_usuarios_estado" Association="CursoMVCModel.FK_usuarios_estado">
             <End Role="estado" EntitySet="estado" />
             <End Role="usuarios" EntitySet="usuarios" />
+          </AssociationSet>
+          <EntitySet Name="Ciudades" EntityType="CursoMVCModel.Ciudades" />
+          <EntitySet Name="Estados" EntityType="CursoMVCModel.Estados" />
+          <EntitySet Name="Paises" EntityType="CursoMVCModel.Paises" />
+          <AssociationSet Name="FK_Ciudades_Estados" Association="CursoMVCModel.FK_Ciudades_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Ciudades" EntitySet="Ciudades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estados_Paises" Association="CursoMVCModel.FK_Estados_Paises">
+            <End Role="Paises" EntitySet="Paises" />
+            <End Role="Estados" EntitySet="Estados" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Animal">
@@ -153,6 +222,57 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Ciudades">
+          <Key>
+            <PropertyRef Name="Ciudad_id" />
+          </Key>
+          <Property Name="Ciudad_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ciudad_nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Estado_id" Type="Int32" />
+          <NavigationProperty Name="Estados" Relationship="CursoMVCModel.FK_Ciudades_Estados" FromRole="Ciudades" ToRole="Estados" />
+        </EntityType>
+        <EntityType Name="Estados">
+          <Key>
+            <PropertyRef Name="Estado_id" />
+          </Key>
+          <Property Name="Estado_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Estado_nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pais_id" Type="Int32" />
+          <NavigationProperty Name="Ciudades" Relationship="CursoMVCModel.FK_Ciudades_Estados" FromRole="Estados" ToRole="Ciudades" />
+          <NavigationProperty Name="Paises" Relationship="CursoMVCModel.FK_Estados_Paises" FromRole="Estados" ToRole="Paises" />
+        </EntityType>
+        <EntityType Name="Paises">
+          <Key>
+            <PropertyRef Name="Pais_id" />
+          </Key>
+          <Property Name="Pais_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pais_nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Estados" Relationship="CursoMVCModel.FK_Estados_Paises" FromRole="Paises" ToRole="Estados" />
+        </EntityType>
+        <Association Name="FK_Ciudades_Estados">
+          <End Type="CursoMVCModel.Estados" Role="Estados" Multiplicity="0..1" />
+          <End Type="CursoMVCModel.Ciudades" Role="Ciudades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="Estado_id" />
+            </Principal>
+            <Dependent Role="Ciudades">
+              <PropertyRef Name="Estado_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estados_Paises">
+          <End Type="CursoMVCModel.Paises" Role="Paises" Multiplicity="0..1" />
+          <End Type="CursoMVCModel.Estados" Role="Estados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paises">
+              <PropertyRef Name="Pais_id" />
+            </Principal>
+            <Dependent Role="Estados">
+              <PropertyRef Name="Pais_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -192,6 +312,32 @@
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ciudades">
+            <EntityTypeMapping TypeName="CursoMVCModel.Ciudades">
+              <MappingFragment StoreEntitySet="Ciudades">
+                <ScalarProperty Name="Estado_id" ColumnName="Estado_id" />
+                <ScalarProperty Name="Ciudad_nombre" ColumnName="Ciudad_nombre" />
+                <ScalarProperty Name="Ciudad_id" ColumnName="Ciudad_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estados">
+            <EntityTypeMapping TypeName="CursoMVCModel.Estados">
+              <MappingFragment StoreEntitySet="Estados">
+                <ScalarProperty Name="Pais_id" ColumnName="Pais_id" />
+                <ScalarProperty Name="Estado_nombre" ColumnName="Estado_nombre" />
+                <ScalarProperty Name="Estado_id" ColumnName="Estado_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paises">
+            <EntityTypeMapping TypeName="CursoMVCModel.Paises">
+              <MappingFragment StoreEntitySet="Paises">
+                <ScalarProperty Name="Pais_nombre" ColumnName="Pais_nombre" />
+                <ScalarProperty Name="Pais_id" ColumnName="Pais_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

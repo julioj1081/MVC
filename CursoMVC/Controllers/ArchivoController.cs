@@ -4,10 +4,12 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CursoMVC.Filtros;
 using CursoMVC.Models.ViewModels;
 
 namespace CursoMVC.Controllers
 {
+    [VerificacionSession]
     public class ArchivoController : Controller
     {
         // GET: Archivo

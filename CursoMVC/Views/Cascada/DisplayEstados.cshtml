@@ -1,0 +1,10 @@
+﻿@model CursoMVC.Models.Estados
+
+<option value="">-- Seleccione un estado --</option>
+@if(ViewBag.EstadosLista != null)
+{
+    foreach(var item in ViewBag.EstadosLista)
+    {
+        <option value="@item.Value">@item.Text</option>
+    }
+}

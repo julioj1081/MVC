@@ -37,5 +37,31 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Ciudades">
+      <EntityTypeMapping TypeName="CursoMVCModel.Ciudades">
+        <MappingFragment StoreEntitySet="Ciudades">
+          <ScalarProperty Name="Estado_id" ColumnName="Estado_id" />
+          <ScalarProperty Name="Ciudad_nombre" ColumnName="Ciudad_nombre" />
+          <ScalarProperty Name="Ciudad_id" ColumnName="Ciudad_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Estados">
+      <EntityTypeMapping TypeName="CursoMVCModel.Estados">
+        <MappingFragment StoreEntitySet="Estados">
+          <ScalarProperty Name="Pais_id" ColumnName="Pais_id" />
+          <ScalarProperty Name="Estado_nombre" ColumnName="Estado_nombre" />
+          <ScalarProperty Name="Estado_id" ColumnName="Estado_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Paises">
+      <EntityTypeMapping TypeName="CursoMVCModel.Paises">
+        <MappingFragment StoreEntitySet="Paises">
+          <ScalarProperty Name="Pais_nombre" ColumnName="Pais_nombre" />
+          <ScalarProperty Name="Pais_id" ColumnName="Pais_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
